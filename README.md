@@ -8,7 +8,7 @@ The **"loto.py"** offers a **loto simulation**.
 
 ## Definitions
 
-
+All defs
 
  
 
