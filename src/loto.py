@@ -27,18 +27,18 @@ def get_user_prompt() -> list[int]:
     """
     loto_grids_player = []
     while len(loto_grids_player) < LotoConstants.GRID_LENGTH:
-        num_joué = int(
+        num_played = int(
             input(f"Choisissez votre prochain numéro entre {LotoConstants.MIN_VALUE}  et {LotoConstants.MAX_VALUE} : "))
-        if num_joué not in range(LotoConstants.MIN_VALUE, LotoConstants.MAX_VALUE+1):
-            print("Erreur : Votre nombre est inférieur à 0 ou supérieur à 40")
-            continue
-        if loto_grids_player.count(num_joué) > 0:
+        if num_played not in range(LotoConstants.MIN_VALUE, LotoConstants.MAX_VALUE+1):
+            print("Erreur : Votre nombre est inférieur à 0 ou supérieur à 40")       
+        elif loto_grids_player.count(num_played) > 0:
             print("Erreur : Votre nombre est double")
-        loto_grids_player.append(num_joué)
+        else:
+            loto_grids_player.append(num_played)
     return loto_grids_player
 
 
-def generate_winner_list() -> list[int]:
+def generate_winner_list() -> set[int]:
     """
     Generates a list of integers
 
@@ -48,17 +48,15 @@ def generate_winner_list() -> list[int]:
     Returns:
     the list of integers generated
     """
-    loto_grids_winner: list[int] = []
+    loto_grids_winner = set()
     while len(loto_grids_winner) < LotoConstants.GRID_LENGTH:
-        num_géneré: int = random.randint(
+        num_generated: int = random.randint(
             LotoConstants.MIN_VALUE, LotoConstants.MAX_VALUE)
-        if loto_grids_winner.count(num_géneré) > 0:
-            return
-        loto_grids_winner.append(num_géneré)
+        loto_grids_winner.add(num_generated)
     return loto_grids_winner
 
 
-def send_wager_answer(received_list: list[int], generated_list: list[int]):
+def send_wager_answer(received_list: set[int], generated_list: set[int]):
     """
         Send the user his list and the winning list
 
@@ -71,13 +69,14 @@ def send_wager_answer(received_list: list[int], generated_list: list[int]):
         the list of integers generated
         """
 
-    received_list.sort()
-    generated_list.sort()
+    received_list = sorted(received_list)
+    generated_list = sorted(generated_list)
+
     print(f"Ta liste : {received_list}")
     print(f"La liste gagnante: {generated_list}")
 
 
-def answer_common_member(list_player: list[int], list_computer: list[int]):
+def answer_common_member(num_players: set[int], num_computers: set[int]):
     """
     Determines the number of winning numbers in user's list
                     and determines the amount they've won
@@ -90,9 +89,9 @@ def answer_common_member(list_player: list[int], list_computer: list[int]):
     A response giving the user the information according to his wager
     """
 
-    a_set = set(list_player)
-    b_set = set(list_computer)
-    loto_grids_combined = list(set(a_set).intersection(b_set))
+    num_players = set(num_players)
+    num_computers = set(num_computers)
+    loto_grids_combined = list(set(num_players.intersection(num_computers)))
     combined_list_length: int = len(loto_grids_combined)
     if combined_list_length == 0:
         print("Vous n'avez pas de numéros gagnants \n Vous avez perdu :(")
