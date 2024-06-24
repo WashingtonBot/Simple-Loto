@@ -13,8 +13,8 @@ class LotoConstants():
     GRID_LENGTH: int = 6
 
 
-def get_user_prompt(min_value: int, 
-                    max_value: int, 
+def get_user_prompt(min_value: int,
+                    max_value: int,
                     grid_length: int
                     ) -> list[int]:
     """
@@ -29,7 +29,7 @@ def get_user_prompt(min_value: int,
     Returns:
     the list of integers received from the user
     """
-    loto_grids_player = []
+    loto_grids_player: list[int] = []
     while len(loto_grids_player) < grid_length:
         num_played = int(
             input(f"Choisissez votre prochain numéro entre {min_value}"
@@ -47,8 +47,7 @@ def get_user_prompt(min_value: int,
 
 def generate_winner_list(min_value: int,
                          max_value: int,
-                         grid_length: int
-) -> set[int]:
+                         grid_length: int) -> set[int]:
     """
     Generates a list of integers
 
@@ -61,7 +60,7 @@ def generate_winner_list(min_value: int,
     Returns:
     the list of integers generated
     """
-    loto_grids_winner = set()
+    loto_grids_winner: set = set()
     while len(loto_grids_winner) < grid_length:
         num_generated: int = random.randint(
             min_value, max_value)
@@ -89,9 +88,9 @@ def send_wager_answer(received_list: set[int], generated_list: set[int]):
     print(f"La liste gagnante: {generated_list}")
 
 
-def answer_common_member(num_players: set[int], 
-                         num_computers: set[int], 
-                         min_value: int, 
+def answer_common_member(num_players: set[int],
+                         num_computers: set[int],
+                         min_value: int,
                          max_value: int):
     """
     Determines the number of winning numbers in user's list
