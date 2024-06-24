@@ -31,17 +31,20 @@ def get_user_prompt(min_value: int,
     """
     loto_grids_player: list[int] = []
     while len(loto_grids_player) < grid_length:
-        num_played = int(
-            input(f"Choisissez votre prochain numéro entre {min_value}"
-                  f" et {max_value}: "))
-        if num_played not in range(min_value, max_value+1):
-            print(
-                f"Erreur : Votre nombre est inférieur à {min_value}"
-                f" ou supérieur à {max_value}")
-        elif loto_grids_player.count(num_played) > 0:
-            print("Erreur : Votre nombre est double")
+        rep_user = input(f"Choisissez votre prochain numéro entre {min_value}"
+                         f" et {max_value}: ")
+        if not rep_user.isdigit():
+            print("Votre réponse n'est pas un nombre!")
         else:
-            loto_grids_player.append(num_played)
+            num_played = int(rep_user)
+            if num_played not in range(min_value, max_value+1):
+                print(
+                    f"Erreur : Votre nombre est inférieur à {min_value}"
+                    f" ou supérieur à {max_value}")
+            elif loto_grids_player.count(num_played) > 0:
+                print("Erreur : Votre nombre est double")
+            else:
+                loto_grids_player.append(num_played)
     return loto_grids_player
 
 
@@ -116,11 +119,7 @@ def answer_common_member(num_players: set[int],
         print(
             f"Vous avez {combined_list_length} numéro gagnant :"
             f"{loto_grids_combined} \n Vous gagnez 1$")
-    elif combined_list_length < 4 and combined_list_length > min_value:
-        print(
-            f"Vous avez {combined_list_length} numéros gagnants :"
-            f"{loto_grids_combined} \n Vous gagnez 5$")
-    elif combined_list_length < max_value and combined_list_length > 3:
+    elif combined_list_length < max_value and combined_list_length > min_value:
         print(
             f"Vous avez {combined_list_length} numéros gagnants :"
             f"{loto_grids_combined} \n Vous gagnez 10$")
@@ -159,7 +158,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(
 
-        description="Customize loto parameters")
+        description=" This file provides a function simulating a loto")
 
     parser.add_argument("--max_num", required=False,
                         help="The highest number which can be played",
