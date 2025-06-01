@@ -156,12 +156,12 @@ def write_list_json(list_player: list[int],
     Returns:
     .
     """
-    with open('C:\\Users\\azert\\Desktop\\Programme\\Nouveau dossier\\Simple-Loto\\src\\wager_details.json', "r+", encoding="utf-8") as filepath:
+    with open("C:\\Users\\azert\\Documents\\GitHub\\Simple-Loto\\src\\wager_details.json", "r+", encoding="utf-8") as filepath:
         try:
             json_list_content = json.load(filepath)
         except json.decoder.JSONDecodeError:
             json_list_content = {}
-    with open('C:\\Users\\azert\\Desktop\\Programme\\Nouveau dossier\\Simple-Loto\\src\\wager_details.json', "w", encoding="utf-8") as fp:
+    with open("C:\\Users\\azert\\Documents\\GitHub\\Simple-Loto\\src\\wager_details.json", "w", encoding="utf-8") as fp:
         json_wager_infos = {'Your list': tuple(sorted(list_player)),
                             'Winning List': tuple(sorted(list_computer)),
                             'Your winning numbers': tuple(list_combined),

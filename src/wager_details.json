@@ -1,7 +1,21 @@
 {
-   "Your list": [],
-   "Winning List": [],
-   "Your winning numbers": [],
-   "Your gains": "",
-   "Amount of numbers you've played": ""
+  "Your list": [
+    1,
+    2,
+    3,
+    17,
+    18,
+    40
+  ],
+  "Winning List": [
+    4,
+    13,
+    19,
+    31,
+    34,
+    38
+  ],
+  "Your winning numbers": [],
+  "Your gains": "0$",
+  "Amount of numbers you've played": "6 numbers"
 }

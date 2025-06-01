@@ -3,7 +3,7 @@
 import unittest
 import sys
 sys.path.append(
-    "C:\\Users\\azert\\Desktop\\Programme\\Nouveau dossier\\Simple-Loto\\src")
+    "C:\\Users\\azert\\Documents\\GitHub\\Simple-Loto\\src")
 from loto import compute_gains
 
 
